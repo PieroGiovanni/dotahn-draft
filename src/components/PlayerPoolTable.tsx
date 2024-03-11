@@ -8,39 +8,23 @@ import {
   Table,
 } from "./ui/table";
 import { useTeamsStore } from "../store/teamStore";
+import { usePlayerStore } from "../store/playerStore";
 
-interface PlayerPoolTableProps {
-  players: Player[];
-}
+// interface PlayerPoolTableProps {}
 
-export const PlayerPoolTable = ({ players }: PlayerPoolTableProps) => {
+export const PlayerPoolTable = () => {
   const [turn, setTurn] = useState(1);
   const [round, setRound] = useState(1);
-  const [teamId, setTeamId] = useState(1);
+
   const { teams, setTeams } = useTeamsStore();
-
-  const sortTeamsByMMR = (teams: Team[]) => {
-    const sortedTeams = teams.sort((teamA, teamB) => {
-      const sumMMRTeamA = teamA.players.reduce(
-        (sum, player) => sum + player.mmr,
-        0
-      );
-      const sumMMRTeamB = teamB.players.reduce(
-        (sum, player) => sum + player.mmr,
-        0
-      );
-
-      return sumMMRTeamA - sumMMRTeamB;
-    });
-    return sortedTeams;
-  };
+  const { players, removePlayerFromPlayerList } = usePlayerStore();
+  const { pickingTeamId, setPickingTeamId } = useTeamsStore();
 
   const selectPlayer = (player: Player) => {
     const updatedTeams = [...teams];
-    updatedTeams.find((t) => t.id === teamId)!.players.push(player);
+    updatedTeams.find((t) => t.id === pickingTeamId)!.players.push(player);
     setTeams(updatedTeams);
-    const sortedTeams = sortTeamsByMMR(updatedTeams);
-    setTeamId(sortedTeams[0].id);
+    removePlayerFromPlayerList(player);
     setTurn((turn) => turn + 1);
   };
 
@@ -50,6 +34,16 @@ export const PlayerPoolTable = ({ players }: PlayerPoolTableProps) => {
       setTurn(1);
     }
   }, [turn, teams.length]);
+
+  useEffect(() => {
+    const sortedTeams = sortTeamsByMMR(teams);
+    for (let i = 0; i < teams.length; i++) {
+      if (sortedTeams[i].players.length < round + 1) {
+        setPickingTeamId(sortedTeams[i].id);
+        break;
+      }
+    }
+  }, [round, turn]);
 
   return (
     teams && (
@@ -84,4 +78,19 @@ export const PlayerPoolTable = ({ players }: PlayerPoolTableProps) => {
       </>
     )
   );
+};
+const sortTeamsByMMR = (teams: Team[]) => {
+  const sortedTeams = teams.sort((teamA, teamB) => {
+    const sumMMRTeamA = teamA.players.reduce(
+      (sum, player) => sum + player.mmr,
+      0
+    );
+    const sumMMRTeamB = teamB.players.reduce(
+      (sum, player) => sum + player.mmr,
+      0
+    );
+
+    return sumMMRTeamA - sumMMRTeamB;
+  });
+  return sortedTeams;
 };

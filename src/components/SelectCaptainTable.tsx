@@ -7,17 +7,27 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import { useTeamsStore } from "../store/teamStore";
+import { usePlayerStore } from "../store/playerStore";
 
 interface SelectCaptainTable {
-  players: Player[];
-  selectCaptains: (captains: Player[]) => void;
+  setAreCaptainsSelected: (boolean: boolean) => void;
 }
 
 export const SelectCaptainTable = ({
-  players,
-  selectCaptains,
+  setAreCaptainsSelected,
 }: SelectCaptainTable) => {
   const [captains, setCaptains] = useState<Player[]>([]);
+
+  const { setTeamsCaptains } = useTeamsStore();
+  const { players, removeCaptainsFromPlayersList } = usePlayerStore();
+
+  const selectCaptains = (captains: Player[]) => {
+    const sortedCaptains = captains.sort((a, b) => a.mmr - b.mmr);
+    setTeamsCaptains(sortedCaptains);
+    setAreCaptainsSelected(true);
+    removeCaptainsFromPlayersList(captains);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
@@ -30,7 +40,7 @@ export const SelectCaptainTable = ({
   };
 
   const saveCaptains = () => {
-    if (captains.length > 1) selectCaptains(captains);
+    selectCaptains(captains);
   };
 
   return (
@@ -64,9 +74,11 @@ export const SelectCaptainTable = ({
             ))}
         </TableBody>
       </Table>
-      <button onClick={saveCaptains} className="border border-white">
-        Seleccionar Capitanes
-      </button>
+      {captains.length > 1 && (
+        <button onClick={saveCaptains} className="border border-white">
+          Seleccionar Capitanes
+        </button>
+      )}
     </>
   );
 };
