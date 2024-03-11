@@ -11,7 +11,7 @@ export const Teams = ({}: TeamsProps) => {
   return (
     teams && (
       <div
-        className={cn("grid p-4 gap-5 w-full items-center", {
+        className={cn("grid p-4 gap-10 w-full items-center", {
           "grid-cols-2": tl > 2 && tl <= 4,
           "grid-cols-3": tl > 4 && tl <= 6,
           "grid-cols-4": tl > 6,
@@ -24,7 +24,7 @@ export const Teams = ({}: TeamsProps) => {
               <div
                 key={team.id}
                 className={cn("text-center border-2 min-h-40", {
-                  "outline outline-8": team.id === pickingTeamId,
+                  "outline outline-8 scale-110": team.id === pickingTeamId,
                 })}
               >
                 Team {team.players[0].nick} - average MMR:

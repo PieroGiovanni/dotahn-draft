@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { Players } from "../data";
 
 interface PlayersState {
   players: Player[];
@@ -8,7 +9,7 @@ interface PlayersState {
 }
 
 export const usePlayerStore = create<PlayersState>()((set) => ({
-  players: [],
+  players: Players,
   setPlayers: (players: Player[]) => set({ players }),
   removeCaptainsFromPlayersList: (captains: Player[]) =>
     set((state) => ({

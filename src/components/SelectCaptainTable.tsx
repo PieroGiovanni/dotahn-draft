@@ -22,14 +22,14 @@ export const SelectCaptainTable = ({
   const { setTeamsCaptains } = useTeamsStore();
   const { players, removeCaptainsFromPlayersList } = usePlayerStore();
 
-  const selectCaptains = (captains: Player[]) => {
+  const selectCaptains = () => {
     const sortedCaptains = captains.sort((a, b) => a.mmr - b.mmr);
     setTeamsCaptains(sortedCaptains);
     setAreCaptainsSelected(true);
     removeCaptainsFromPlayersList(captains);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
 
     if (checked) {
@@ -37,10 +37,6 @@ export const SelectCaptainTable = ({
     } else {
       setCaptains(captains.filter((c) => c.id !== Number(value)));
     }
-  };
-
-  const saveCaptains = () => {
-    selectCaptains(captains);
   };
 
   return (
@@ -67,7 +63,7 @@ export const SelectCaptainTable = ({
                     id="id"
                     name="isCaptain"
                     value={player.id}
-                    onChange={handleChange}
+                    onChange={handleCheckBoxChange}
                   />
                 </TableCell>
               </TableRow>
@@ -75,7 +71,7 @@ export const SelectCaptainTable = ({
         </TableBody>
       </Table>
       {captains.length > 1 && (
-        <button onClick={saveCaptains} className="border border-white">
+        <button onClick={selectCaptains} className="border border-white">
           Seleccionar Capitanes
         </button>
       )}

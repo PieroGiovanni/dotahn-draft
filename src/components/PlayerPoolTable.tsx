@@ -10,9 +10,9 @@ import {
 import { useTeamsStore } from "../store/teamStore";
 import { usePlayerStore } from "../store/playerStore";
 
-// interface PlayerPoolTableProps {}
+interface PlayerPoolTableProps {}
 
-export const PlayerPoolTable = () => {
+export const PlayerPoolTable = ({}: PlayerPoolTableProps) => {
   const [turn, setTurn] = useState(1);
   const [round, setRound] = useState(1);
 
