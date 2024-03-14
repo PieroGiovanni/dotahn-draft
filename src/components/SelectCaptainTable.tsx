@@ -39,6 +39,11 @@ export const SelectCaptainTable = ({
     }
   };
 
+  const handleRowClick = (id: string) => {
+    const checkbox = document.getElementById(id) as HTMLInputElement;
+    checkbox.click();
+  };
+
   return (
     <>
       <Table>
@@ -53,14 +58,18 @@ export const SelectCaptainTable = ({
           {players
             .sort((a, b) => b.mmr - a.mmr)
             .map((player) => (
-              <TableRow key={player.id}>
+              <TableRow
+                className="hover:cursor-pointer"
+                key={player.id}
+                onClick={() => handleRowClick(player.id.toString())}
+              >
                 <TableCell className="font-medium">{player.nick}</TableCell>
                 <TableCell>{player.mmr}</TableCell>
                 <TableCell>
                   <input
                     className="size-5"
                     type="checkbox"
-                    id="id"
+                    id={player.id.toString()}
                     name="isCaptain"
                     value={player.id}
                     onChange={handleCheckBoxChange}

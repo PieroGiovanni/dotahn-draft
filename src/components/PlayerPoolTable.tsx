@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   TableHeader,
   TableRow,
@@ -9,12 +9,12 @@ import {
 } from "./ui/table";
 import { useTeamsStore } from "../store/teamStore";
 import { usePlayerStore } from "../store/playerStore";
+import { useRoundStore } from "../store/roundStore";
 
 interface PlayerPoolTableProps {}
 
 export const PlayerPoolTable = ({}: PlayerPoolTableProps) => {
-  const [turn, setTurn] = useState(1);
-  const [round, setRound] = useState(1);
+  const { round, turn, setNextRound, setNextTurn, setTurn } = useRoundStore();
 
   const { teams, setTeams } = useTeamsStore();
   const { players, removePlayerFromPlayerList } = usePlayerStore();
@@ -25,12 +25,12 @@ export const PlayerPoolTable = ({}: PlayerPoolTableProps) => {
     updatedTeams.find((t) => t.id === pickingTeamId)!.players.push(player);
     setTeams(updatedTeams);
     removePlayerFromPlayerList(player);
-    setTurn((turn) => turn + 1);
+    setNextTurn(turn);
   };
 
   useEffect(() => {
     if (teams.length && turn > teams.length) {
-      setRound((round) => round + 1);
+      setNextRound(round);
       setTurn(1);
     }
   }, [turn, teams.length]);
@@ -48,9 +48,6 @@ export const PlayerPoolTable = ({}: PlayerPoolTableProps) => {
   return (
     teams && (
       <>
-        <div>
-          round: {round}, TURN {turn}
-        </div>
         <Table>
           <TableHeader>
             <TableRow>

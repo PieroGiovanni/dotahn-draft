@@ -12,15 +12,15 @@ function App() {
       <h1 className="text-center h-[10%] text-5xl">Spring HN Major</h1>
 
       {!areCaptainsSelected ? (
-        <div className="flex h-[90%] w-auto justify-center flex-col">
+        <div className="flex h-[80%] w-auto justify-center flex-col">
           <SelectCaptainTable setAreCaptainsSelected={setAreCaptainsSelected} />
         </div>
       ) : (
-        <div className="flex h-[90%] w-full">
+        <div className="flex h-[80%] w-full">
           <div className="border-2 w-[30%] overflow-y-auto">
             <PlayerPoolTable />
           </div>
-          <div className="flex flex-1 p-7">
+          <div className="flex flex-1 px-10">
             <Teams />
           </div>
         </div>
