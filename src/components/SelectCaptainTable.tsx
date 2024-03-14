@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { usePlayerStore } from "../store/playerStore";
+import { useTeamsStore } from "../store/teamStore";
 import {
   Table,
   TableBody,
@@ -7,8 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { useTeamsStore } from "../store/teamStore";
-import { usePlayerStore } from "../store/playerStore";
 
 interface SelectCaptainTable {
   setAreCaptainsSelected: (boolean: boolean) => void;
@@ -19,8 +19,8 @@ export const SelectCaptainTable = ({
 }: SelectCaptainTable) => {
   const [captains, setCaptains] = useState<Player[]>([]);
 
-  const { setTeamsCaptains } = useTeamsStore();
   const { players, removeCaptainsFromPlayersList } = usePlayerStore();
+  const { setTeamsCaptains } = useTeamsStore();
 
   const selectCaptains = () => {
     const sortedCaptains = captains.sort((a, b) => a.mmr - b.mmr);
@@ -29,19 +29,13 @@ export const SelectCaptainTable = ({
     removeCaptainsFromPlayersList(captains);
   };
 
-  const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-
-    if (checked) {
-      setCaptains([...captains, players.find((p) => p.id === Number(value))!]);
+  const updateCheckStatus = (index: number) => {
+    const player = players[index];
+    if (captains.includes(player)) {
+      setCaptains(captains.filter((c) => c !== player));
     } else {
-      setCaptains(captains.filter((c) => c.id !== Number(value)));
+      setCaptains([...captains, player]);
     }
-  };
-
-  const handleRowClick = (id: string) => {
-    const checkbox = document.getElementById(id) as HTMLInputElement;
-    checkbox.click();
   };
 
   return (
@@ -49,19 +43,19 @@ export const SelectCaptainTable = ({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Nickname</TableHead>
-            <TableHead>MMR</TableHead>
-            <TableHead>Capitán</TableHead>
+            <TableHead className="text-white text-center">NICKNAME</TableHead>
+            <TableHead className="text-white text-center">MMR</TableHead>
+            <TableHead className="text-white text-center">CAPITÁN</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="text-center">
           {players
             .sort((a, b) => b.mmr - a.mmr)
-            .map((player) => (
+            .map((player, index) => (
               <TableRow
                 className="hover:cursor-pointer"
                 key={player.id}
-                onClick={() => handleRowClick(player.id.toString())}
+                onClick={() => updateCheckStatus(index)}
               >
                 <TableCell className="font-medium">{player.nick}</TableCell>
                 <TableCell>{player.mmr}</TableCell>
@@ -69,10 +63,9 @@ export const SelectCaptainTable = ({
                   <input
                     className="size-5"
                     type="checkbox"
-                    id={player.id.toString()}
-                    name="isCaptain"
-                    value={player.id}
-                    onChange={handleCheckBoxChange}
+                    id={`checkbox-${index}`}
+                    checked={captains.includes(player)}
+                    onChange={() => updateCheckStatus(index)}
                   />
                 </TableCell>
               </TableRow>
@@ -85,5 +78,27 @@ export const SelectCaptainTable = ({
         </button>
       )}
     </>
+  );
+};
+
+export const Checkbox = ({
+  isChecked,
+  checkHandler,
+  index,
+}: {
+  isChecked: boolean;
+  checkHandler: () => void;
+  index: number;
+}) => {
+  return (
+    <div>
+      <input
+        className="size-5"
+        type="checkbox"
+        id={`checkbox-${index}`}
+        checked={isChecked}
+        onChange={checkHandler}
+      />
+    </div>
   );
 };

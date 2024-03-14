@@ -8,7 +8,7 @@ function App() {
     useState<boolean>(false);
 
   return (
-    <div className="h-screen flex flex-col items-center">
+    <div className="h-screen flex flex-col items-center bg-cover bg-center bg-[url('/src/assets/images/background3.webp')]">
       <h1 className="text-center h-[10%] text-5xl">Spring HN Major</h1>
 
       {!areCaptainsSelected ? (
