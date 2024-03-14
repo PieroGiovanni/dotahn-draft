@@ -10,6 +10,7 @@ import {
 import { useTeamsStore } from "../store/teamStore";
 import { usePlayerStore } from "../store/playerStore";
 import { useRoundStore } from "../store/roundStore";
+import { Rol } from "../data";
 
 interface PlayerPoolTableProps {}
 
@@ -67,7 +68,38 @@ export const PlayerPoolTable = ({}: PlayerPoolTableProps) => {
                 >
                   <TableCell className="font-medium">{player.nick}</TableCell>
                   <TableCell>{player.mmr}</TableCell>
-                  <TableCell>{player.rol}</TableCell>
+                  <TableCell className="flex gap-3">
+                    {player.roles?.map((rol) => {
+                      let icon;
+                      switch (rol) {
+                        case Rol.SafeLane:
+                          icon = "SafeLaneIcon.svg";
+                          break;
+                        case Rol.MidLane:
+                          icon = "MidLaneIcon.svg";
+                          break;
+                        case Rol.OffLane:
+                          icon = "OffLaneIcon.svg";
+                          break;
+                        case Rol.SoftSupport:
+                          icon = "SoftSupportIcon.svg";
+                          break;
+                        case Rol.HardSupport:
+                          icon = "HardSupportIcon.svg";
+                          break;
+                        default:
+                          break;
+                      }
+                      return (
+                        <img
+                          key={`${player.id}-${rol}`}
+                          className="size-5"
+                          title={rol}
+                          src={`/src/assets/icons/${icon}`}
+                        />
+                      );
+                    })}
+                  </TableCell>
                 </TableRow>
               ))}
           </TableBody>

@@ -4,7 +4,7 @@ interface Player {
   id: number;
   nick: string;
   mmr: number;
-  rol?: Rol;
+  roles?: Rol[];
 }
 
 interface Team {
