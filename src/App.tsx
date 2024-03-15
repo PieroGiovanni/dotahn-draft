@@ -8,16 +8,23 @@ function App() {
     useState<boolean>(false);
 
   return (
-    <div className="h-screen flex flex-col items-center bg-cover bg-center bg-[url('/src/assets/images/background3.webp')]">
+    <div className="h-screen flex flex-col items-center">
       <h1 className="text-center h-[10%] text-5xl">Spring HN Major</h1>
+      <video
+        className="absolute -z-10 w-full h-full "
+        src="/src/assets/videos/aegis_loop.webm"
+        loop
+        autoPlay
+        muted
+      ></video>
 
       {!areCaptainsSelected ? (
-        <div className="flex h-[80%] w-auto justify-center flex-col">
+        <div className="flex h-[85%] w-auto justify-center flex-col gap-y-3 items-center">
           <SelectCaptainTable setAreCaptainsSelected={setAreCaptainsSelected} />
         </div>
       ) : (
-        <div className="flex h-[80%] w-full">
-          <div className="border-2 w-[30%] overflow-y-auto">
+        <div className="flex h-[85%] w-full">
+          <div className="border-2 w-[23%] overflow-y-auto">
             <PlayerPoolTable />
           </div>
           <div className="flex flex-1 px-10">

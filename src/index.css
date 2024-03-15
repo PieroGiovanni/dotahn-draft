@@ -65,6 +65,39 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+.team::before,
+.team::after {
+  content: "";
+  position: absolute;
+  inset: -0.4rem;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    red,
+    /* yellow, */ orange,
+    /* yellow, */ red
+  );
+  border-radius: inherit;
+  animation: rotation 3s linear infinite;
+}
+
+.team::after {
+  filter: blur(0.5rem);
+}
 
 @layer base {
   * {

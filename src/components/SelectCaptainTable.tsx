@@ -40,15 +40,15 @@ export const SelectCaptainTable = ({
 
   return (
     <>
-      <Table>
+      <Table className=" bg-black/50 rounded-2xl">
         <TableHeader>
-          <TableRow>
+          <TableRow className="text-xl">
             <TableHead className="text-white text-center">NICKNAME</TableHead>
             <TableHead className="text-white text-center">MMR</TableHead>
             <TableHead className="text-white text-center">CAPITÁN</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="text-center">
+        <TableBody className="text-center text-2xl">
           {players
             .sort((a, b) => b.mmr - a.mmr)
             .map((player, index) => (
@@ -61,7 +61,7 @@ export const SelectCaptainTable = ({
                 <TableCell>{player.mmr}</TableCell>
                 <TableCell>
                   <input
-                    className="size-5"
+                    className="size-7 accent-red-700"
                     type="checkbox"
                     id={`checkbox-${index}`}
                     checked={captains.includes(player)}
@@ -73,7 +73,10 @@ export const SelectCaptainTable = ({
         </TableBody>
       </Table>
       {captains.length > 1 && (
-        <button onClick={selectCaptains} className="border border-white">
+        <button
+          onClick={selectCaptains}
+          className="border border-white rounded-2xl contrast-125 bg-red-950 w-[70%] h-20 text-2xl hover:contrast-100"
+        >
           Seleccionar Capitanes
         </button>
       )}
