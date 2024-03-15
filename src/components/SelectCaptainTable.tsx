@@ -75,7 +75,7 @@ export const SelectCaptainTable = ({
       {captains.length > 1 && (
         <button
           onClick={selectCaptains}
-          className="border border-white rounded-2xl contrast-125 bg-red-950 w-[70%] h-20 text-2xl hover:contrast-100"
+          className="border-[1px] border-white rounded-xl bg-red-800 w-[70%] h-20 text-2xl hover:contrast-150"
         >
           Seleccionar Capitanes
         </button>

@@ -83,20 +83,22 @@
 .team::after {
   content: "";
   position: absolute;
-  inset: -0.4rem;
+  inset: -0.5rem;
   z-index: -1;
   background: conic-gradient(
     from var(--gradient-angle),
-    red,
-    /* yellow, */ orange,
-    /* yellow, */ red
+    #d82221,
+    #b72c2f,
+    orange,
+    #b72c2f,
+    #d82221
   );
   border-radius: inherit;
-  animation: rotation 3s linear infinite;
+  animation: rotation 2s linear infinite;
 }
 
 .team::after {
-  filter: blur(0.5rem);
+  filter: blur(0.6rem);
 }
 
 @layer base {
