@@ -87,18 +87,18 @@
   z-index: -1;
   background: conic-gradient(
     from var(--gradient-angle),
-    #d82221,
-    #b72c2f,
-    orange,
-    #b72c2f,
-    #d82221
+    #f48c06,
+    #e85d04,
+    #dc2f02,
+    #e85d04,
+    #f48c06
   );
   border-radius: inherit;
   animation: rotation 2s linear infinite;
 }
 
 .team::after {
-  filter: blur(0.6rem);
+  filter: blur(0.8rem);
 }
 
 @layer base {

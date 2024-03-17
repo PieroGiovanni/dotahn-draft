@@ -40,7 +40,7 @@ export const SelectCaptainTable = ({
 
   return (
     <>
-      <Table className=" bg-black/50 rounded-2xl">
+      <Table className="rounded-2xl bg-black/50">
         <TableHeader>
           <TableRow className="text-xl">
             <TableHead className="text-white text-center">NICKNAME</TableHead>
@@ -72,14 +72,14 @@ export const SelectCaptainTable = ({
             ))}
         </TableBody>
       </Table>
-      {captains.length > 1 && (
-        <button
-          onClick={selectCaptains}
-          className="border-[1px] border-white rounded-xl bg-red-800 w-[70%] h-20 text-2xl hover:contrast-150"
-        >
-          Seleccionar Capitanes
-        </button>
-      )}
+
+      <button
+        hidden={captains.length < 2}
+        onClick={selectCaptains}
+        className="border-[1px] border-white rounded-xl bg-red-800 w-[70%] h-20 text-2xl hover:contrast-150"
+      >
+        Seleccionar Capitanes
+      </button>
     </>
   );
 };

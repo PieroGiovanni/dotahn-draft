@@ -41,6 +41,7 @@ export const PlayerPoolTable = ({}: PlayerPoolTableProps) => {
     for (let i = 0; i < teams.length; i++) {
       if (sortedTeams[i].players.length < round + 1) {
         setPickingTeamId(sortedTeams[i].id);
+        console.log("2");
         break;
       }
     }
