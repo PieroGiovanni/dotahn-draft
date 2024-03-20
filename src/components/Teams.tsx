@@ -1,6 +1,5 @@
 import { cn } from "../lib/utils";
 import { useTeamsStore } from "../store/teamStore";
-import { Counter } from "./Counter";
 import { RoleIcons } from "./RoleIcons";
 
 interface TeamsProps {}
@@ -13,16 +12,12 @@ export const Teams = ({}: TeamsProps) => {
   return (
     teams && (
       <>
-        {/* <Counter /> */}
         <div
-          className={cn(
-            "grid p-4 gap-10 w-full items-center justify-items-center",
-            {
-              "grid-cols-2": tl <= 4,
-              "grid-cols-3": tl > 4 && tl <= 6,
-              "grid-cols-4": tl > 6,
-            }
-          )}
+          className={cn("grid p-4 w-full items-center place-items-center", {
+            "grid-cols-2": tl <= 4,
+            "grid-cols-3": tl > 4 && tl <= 6,
+            "grid-cols-4": tl > 6,
+          })}
         >
           {teams
             .sort((a, b) => a.id - b.id)
@@ -31,13 +26,21 @@ export const Teams = ({}: TeamsProps) => {
                 <div
                   key={team.id}
                   className={cn(
-                    "text-center  rounded-xl border-[4px] min-h-40 w-full relative max-w-[500px] bg-black/70 transition-all",
+                    "text-center  rounded-xl border-[4px] h-[214px] w-full relative max-w-[500px]  bg-black/70 transition-all",
                     {
                       "team bg-black border-0": team.id === pickingTeamId,
                       "scale-[1.5] border-double border-[6px] border-red-950":
-                        pickingTeamId === 0 && tl <= 4,
+                        pickingTeamId === 0 && tl < 5,
+                      "scale-[1.23] border-double border-[6px] border-red-950":
+                        pickingTeamId === 0 && tl === 5,
                       "scale-[1.2] border-double border-[6px] border-red-950":
-                        pickingTeamId === 0 && tl > 4,
+                        pickingTeamId === 0 && tl > 5,
+                    },
+                    {
+                      "col-start-3":
+                        tl === 5 && (team.id === 2 || team.id === 5),
+                      "col-start-2": tl === 5 && team.id === 3,
+                      "col-start-1": tl === 5 && team.id === 4,
                     }
                   )}
                 >
