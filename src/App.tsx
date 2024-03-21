@@ -20,6 +20,11 @@ function App() {
 
   return (
     <div className="h-screen flex flex-col items-center font-sans">
+      <div className="fixed bottom-0 right-0">
+        <h1>
+          Designed by <strong className="text-xl">TosH</strong>
+        </h1>
+      </div>
       <h1 className="text-center items-center flex h-[10%] text-8xl">
         Spring HN Major
       </h1>

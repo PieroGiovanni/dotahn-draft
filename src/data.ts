@@ -7,7 +7,7 @@ export enum Rol {
 }
 
 export const Players: Player[] = [
-  { id: 1, nick: "Kierrok", mmr: 5231, roles: [Rol.SafeLane] },
+  { id: 1, nick: "Kierrok", mmr: 5600, roles: [Rol.SafeLane] },
   { id: 2, nick: "Legolaz", mmr: 5600, roles: [Rol.HardSupport] },
   { id: 3, nick: "S0br3", mmr: 4446, roles: [Rol.MidLane] },
   { id: 4, nick: "Melody", mmr: 6280, roles: [Rol.MidLane] },
@@ -52,39 +52,4 @@ export const Players: Player[] = [
   { id: 18, nick: "TosH", mmr: 5000, roles: [Rol.SafeLane] },
   { id: 19, nick: "Fonti", mmr: 2554, roles: [Rol.SoftSupport] },
   { id: 20, nick: "xYoyYox", mmr: 2895, roles: [Rol.SoftSupport] },
-  // {
-  //   id: 21,
-  //   nick: "player21",
-  //   mmr: 1744,
-  //   roles: [Rol.SoftSupport, Rol.HardSupport],
-  // },
-  // {
-  //   id: 22,
-  //   nick: "player22",
-  //   mmr: 7425,
-  //   roles: [Rol.MidLane, Rol.SoftSupport],
-  // },
-  // { id: 23, nick: "player23", mmr: 8011, roles: [Rol.MidLane, Rol.SafeLane] },
-  // { id: 24, nick: "player24", mmr: 5006, roles: [Rol.MidLane] },
-  // { id: 25, nick: "player25", mmr: 7955, roles: [Rol.OffLane] },
-  // {
-  //   id: 26,
-  //   nick: "nabissor",
-  //   mmr: 3347,
-  //   roles: [Rol.SoftSupport, Rol.OffLane],
-  // },
-  // {
-  //   id: 27,
-  //   nick: "Joswe45",
-  //   mmr: 1750,
-  //   roles: [Rol.OffLane],
-  // },
-  // {
-  //   id: 28,
-  //   nick: "Sir Rushero-",
-  //   mmr: 3782,
-  //   roles: [Rol.MidLane, Rol.SafeLane],
-  // },
-  // { id: 29, nick: "TosH", mmr: 5000, roles: [Rol.SafeLane] },
-  // { id: 30, nick: "player19", mmr: 3000, roles: [Rol.HardSupport] },
 ];

@@ -29,7 +29,7 @@ export const Teams = ({}: TeamsProps) => {
                     "text-center  rounded-xl border-[4px] h-[214px] w-full relative max-w-[500px]  bg-black/70 transition-all",
                     {
                       "team bg-black border-0": team.id === pickingTeamId,
-                      "scale-[1.5] border-double border-[6px] border-red-950":
+                      "scale-[1.48] border-double border-[6px] border-red-950":
                         pickingTeamId === 0 && tl < 5,
                       "scale-[1.23] border-double border-[6px] border-red-950":
                         pickingTeamId === 0 && tl === 5,
