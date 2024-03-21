@@ -1,4 +1,9 @@
 import { Rol } from "../data";
+import SafeLaneIcon from "../assets/icons/SafeLaneIcon.svg";
+import MidLaneIcon from "../assets/icons/MidLaneIcon.svg";
+import OffLaneIcon from "../assets/icons/OffLaneIcon.svg";
+import SoftSupportIcon from "../assets/icons/SoftSupportIcon.svg";
+import HardSupportIcon from "../assets/icons/HardSupportIcon.svg";
 
 interface RoleIconsProps {
   player: Player;
@@ -12,19 +17,19 @@ export const RoleIcons = ({ player, className }: RoleIconsProps) => {
         let icon;
         switch (rol) {
           case Rol.SafeLane:
-            icon = "SafeLaneIcon.svg";
+            icon = SafeLaneIcon;
             break;
           case Rol.MidLane:
-            icon = "MidLaneIcon.svg";
+            icon = MidLaneIcon;
             break;
           case Rol.OffLane:
-            icon = "OffLaneIcon.svg";
+            icon = OffLaneIcon;
             break;
           case Rol.SoftSupport:
-            icon = "SoftSupportIcon.svg";
+            icon = SoftSupportIcon;
             break;
           case Rol.HardSupport:
-            icon = "HardSupportIcon.svg";
+            icon = HardSupportIcon;
             break;
           default:
             break;
@@ -34,7 +39,7 @@ export const RoleIcons = ({ player, className }: RoleIconsProps) => {
             key={`${player.id}-${rol}`}
             className={className}
             title={rol}
-            src={`/src/assets/icons/${icon}`}
+            src={icon}
           />
         );
       })}

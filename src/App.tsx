@@ -4,6 +4,7 @@ import { SelectCaptainTable } from "./components/SelectCaptainTable";
 import { Teams } from "./components/Teams";
 import { useRoundStore } from "./store/roundStore";
 import { useTeamsStore } from "./store/teamStore";
+import backgroundVideo from "./assets/videos/aegis_loop.webm";
 
 function App() {
   const [areCaptainsSelected, setAreCaptainsSelected] =
@@ -30,7 +31,7 @@ function App() {
       </h1>
       <video
         className="absolute -z-10 w-full h-full "
-        src="/src/assets/videos/aegis_loop.webm"
+        src={backgroundVideo}
         loop
         autoPlay
         muted
