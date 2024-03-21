@@ -87,11 +87,16 @@
   z-index: -1;
   background: conic-gradient(
     from var(--gradient-angle),
-    #f48c06,
+    /* #f48c06,
     #e85d04,
     #dc2f02,
     #e85d04,
     #f48c06
+     */ orange,
+    yellow,
+    lime,
+    yellow,
+    orange
   );
   border-radius: inherit;
   animation: rotation 2s linear infinite;

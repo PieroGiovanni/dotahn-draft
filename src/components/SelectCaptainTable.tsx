@@ -61,7 +61,7 @@ export const SelectCaptainTable = ({
                 <TableCell>{player.mmr}</TableCell>
                 <TableCell>
                   <input
-                    className="size-7 accent-red-700"
+                    className="size-7 accent-lime-700"
                     type="checkbox"
                     id={`checkbox-${index}`}
                     checked={captains.includes(player)}
@@ -76,7 +76,7 @@ export const SelectCaptainTable = ({
       <button
         hidden={captains.length < 2}
         onClick={selectCaptains}
-        className="border-[1px] border-white rounded-xl bg-red-800 w-[70%] h-20 text-2xl hover:contrast-150"
+        className="border-[1px] border-white rounded-xl bg-lime-700 w-[70%] h-20 text-2xl hover:contrast-150"
       >
         Seleccionar Capitanes
       </button>

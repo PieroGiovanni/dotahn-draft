@@ -15,8 +15,8 @@ export const Teams = ({}: TeamsProps) => {
         <div
           className={cn("grid p-4 w-full items-center place-items-center", {
             "grid-cols-2": tl <= 4,
-            "grid-cols-3": tl > 4 && tl <= 6,
-            "grid-cols-4": tl > 6,
+            "grid-cols-3 gap-4": tl > 4 && tl <= 6,
+            "grid-cols-4 gap-4": tl > 6,
           })}
         >
           {teams
@@ -29,11 +29,11 @@ export const Teams = ({}: TeamsProps) => {
                     "text-center  rounded-xl border-[4px] h-[214px] w-full relative max-w-[500px]  bg-black/70 transition-all",
                     {
                       "team bg-black border-0": team.id === pickingTeamId,
-                      "scale-[1.48] border-double border-[6px] border-red-950":
+                      "scale-[1.48] border-double border-[6px] border-lime-700":
                         pickingTeamId === 0 && tl < 5,
-                      "scale-[1.23] border-double border-[6px] border-red-950":
+                      "scale-[1.23] border-double border-[6px] border-lime-700":
                         pickingTeamId === 0 && tl === 5,
-                      "scale-[1.2] border-double border-[6px] border-red-950":
+                      "scale-[1.2] border-double border-[6px] border-lime-700":
                         pickingTeamId === 0 && tl > 5,
                     },
                     {

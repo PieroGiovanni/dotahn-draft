@@ -4,7 +4,7 @@ import { SelectCaptainTable } from "./components/SelectCaptainTable";
 import { Teams } from "./components/Teams";
 import { useRoundStore } from "./store/roundStore";
 import { useTeamsStore } from "./store/teamStore";
-import backgroundVideo from "./assets/videos/aegis_loop.webm";
+import backgroundVideo from "./assets/videos/drafthn.webm";
 
 function App() {
   const [areCaptainsSelected, setAreCaptainsSelected] =
@@ -26,9 +26,11 @@ function App() {
           Designed by <strong className="text-xl">TosH</strong>
         </h1>
       </div>
-      <h1 className="text-center items-center flex h-[10%] text-8xl">
-        Spring HN Major
-      </h1>
+
+      <div className="pt-4 flex h-[10%] italic relative">
+        <p className="pt-3 text-4xl">The</p>
+        <h1 className="text-center text-8xl">Spring HN Major</h1>
+      </div>
       <video
         className="absolute -z-10 w-full h-full "
         src={backgroundVideo}
@@ -38,7 +40,7 @@ function App() {
       ></video>
 
       {!areCaptainsSelected ? (
-        <div className="flex h-[90%] w-auto justify-center flex-col gap-y-3 items-center py-4">
+        <div className="flex h-[90%] w-auto justify-center flex-col gap-y-3 items-center py-6">
           <SelectCaptainTable setAreCaptainsSelected={setAreCaptainsSelected} />
         </div>
       ) : (
